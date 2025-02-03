@@ -5,30 +5,16 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import type { Author, Dish } from "@/sanity/types";
+
+export type DishType = Omit<Dish, "author"> & { author: Author };
 
 
-export interface Author {
-  id: number;
-  name: string;
-  image?: string;
-}
-
-export interface DishProps {
-  id: number;
-  createdAt: string;
-  views: number;
-  author: Author;
-  title: string;
-  description: string;
-  image: string;
-  category?: string;
-}
-
-export const DishCard = async ({ dish }: { dish: DishProps }) => {
+export const DishCard = async ({ dish }: { dish: DishType }) => {
   const {
-    createdAt,
-    author: { id: authorId, image: authorImage, name },
-    id,
+    _createdAt,
+    author: { _id: authorId, image: authorImage, name },
+    _id,
     image,
     views,
     description,
@@ -43,9 +29,9 @@ export const DishCard = async ({ dish }: { dish: DishProps }) => {
       {/* created date and views */}
       <div className={"flex-between"}>
         <p className={"dish-card_date"}>
-          {formatDate(createdAt)}
+          {formatDate(_createdAt)}
         </p>
-        {views > 0 && <div className={"flex gap-1.5"}>
+        {!!views && <div className={"flex gap-1.5"}>
           <div className="flex gap-1.5">
             <EyeIcon className="size-6 text-primary" />
             <span className="text-16-medium">{views}</span>
@@ -60,7 +46,7 @@ export const DishCard = async ({ dish }: { dish: DishProps }) => {
             <p className={"text-16-medium line-clamp-1"}>{capitalizeWords(authorName)}</p>
           </Link>
           {/* Link to dish page */}
-          <Link href={`/dish/${id}`}>
+          <Link href={`/dish/${_id}`}>
             <h3 className={"text-26-semibold line-clamp-1"}>{title}</h3>
           </Link>
         </div>
@@ -78,18 +64,18 @@ export const DishCard = async ({ dish }: { dish: DishProps }) => {
       <p className={"dish-card_desc"}>
         {description}
       </p>
-      <Link href={`/dish/${id}`} className={"mt-auto"}>
+      {image && <Link href={`/dish/${_id}`} className={"mt-auto"}>
         <Image src={image} className={"dish-card-image w-full h-auto"} alt={"dish-card-image"} width={0}
                height={0}
                sizes="80vw"
         />
-      </Link>
+      </Link>}
       <div className={"flex-between gap-3 mt-5"}>
         {category && <Link href={`/?query=${category}`}>
           <p className={"text-16-medium"}>{category}</p>
         </Link>}
         <Button className={"dish-card_btn"} asChild>
-          <Link href={`/dish/${id}`}>
+          <Link href={`/dish/${_id}`}>
             Details
           </Link>
         </Button>

@@ -34,6 +34,7 @@ export const getAuthorNameLetters = (name: string): string => {
   }
 };
 
-export const capitalizeWords = (str: string): string => {
+export const capitalizeWords = (str?: string): string => {
+  if (!str) return "";
   return str.replace(/\b\w/g, char => char.toUpperCase());
 };
