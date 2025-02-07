@@ -5,15 +5,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-
 export const formatDate = (date: string) => {
   //TODO: modify here when implementing localization
-  return new Date(date).toLocaleDateString("fi-FI", {
+  return new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-
 };
 
 export const convertAuthorName = (name: string): string => {
@@ -36,5 +34,17 @@ export const getAuthorNameLetters = (name: string): string => {
 
 export const capitalizeWords = (str?: string): string => {
   if (!str) return "";
-  return str.replace(/\b\w/g, char => char.toUpperCase());
+  return str.replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
+export const getFallbackProfileImageUrl = (name: string): string => {
+  return `https://eu.ui-avatars.com/api/?name=${convertAuthorName(name)}&size=250`;
+};
+
+export const convertViews = (viewsAmount: number): string => {
+  if (viewsAmount === 1) {
+    return `${viewsAmount} view`;
+  } else {
+    return `${viewsAmount} views`;
+  }
 };

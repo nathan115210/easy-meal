@@ -36,3 +36,27 @@ export const DISH_QUERY_WITH_SEARCH =
     description,
     steps
 }`);
+
+export const DISH_BY_ID_QUERY = defineQuery(`*[_type == "dish" && _id == $id] { 
+  _id,
+  title, 
+  slug,
+  _createdAt, 
+  author -> {
+    _id,
+    name,
+    image,
+    bio,
+    username
+  },
+  views,
+  category,
+  image, 
+  description,
+  steps
+}[0]`);
+
+export const DISH_VIEWS_QUERY = defineQuery(`*[_type == "dish" && _id == $id] {
+  _id,
+  views
+}[0]`);
