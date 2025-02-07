@@ -26,6 +26,7 @@
     "next": "15.1.6",
     "next-auth": "^5.0.0-beta.25",
     "next-sanity": "^9.8.47",
+    "nodemailer": "^6.10.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

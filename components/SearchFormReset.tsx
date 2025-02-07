@@ -1,27 +1,23 @@
 "use client";
 
 import Link from "next/link";
+
 import { X } from "lucide-react";
 
-const SearchFormReset = () => {
-  const resetHandler = async () => {
-    const formElement = document.querySelector("form .search-form") as HTMLFormElement;
-    if (formElement) {
-      formElement.reset();
-    }
-    const inputElement = document.querySelector(".search-input") as HTMLInputElement;
-    if (inputElement) {
-      inputElement.value = "";
-    }
-
-  };
+const SearchFormReset = ({
+  className,
+  label,
+}: {
+  className?: string;
+  label?: string;
+}) => {
   return (
-    <button type={"reset"} onClick={resetHandler}>
-      <Link href={"/"} className={"search-btn text-white"}>
-        <X className="size-5" />
-      </Link>
-    </button>
-
+    <Link
+      href={"/"}
+      className={`!important flex items-center justify-center bg-black text-white ${className ?? "search-btn"}`}
+    >
+      {label ?? <X className="size-5" />}
+    </Link>
   );
 };
 export default SearchFormReset;
