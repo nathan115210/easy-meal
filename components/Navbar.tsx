@@ -15,26 +15,30 @@ const Navbar = async () => {
         <Link href="/">
           <Image src={"/logo.svg"} alt={"logo"} width={100} height={30} />
         </Link>
-        {!session?.user ? (
-          <div className={"flex items-center gap-5"}></div>
-        ) : (
-          <Link href={"/create"}>Create</Link>
-        )}
-        {session?.user ? (
-          <form
-            className={"flex justify-between gap-4"}
-            action={async () => {
-              "use server";
-              await signOut({ redirectTo: "/" });
-            }}
-          >
-            <Button variant={"default"} type={"submit"}>
-              Sign Out
-            </Button>
-          </form>
-        ) : (
-          <AuthModal />
-        )}
+        <div className={"flex items-center gap-5"}>
+          {!session?.user ? (
+            <div className={"flex items-center gap-5"}></div>
+          ) : (
+            <Link className={"btn"} href={"/create"}>
+              Create
+            </Link>
+          )}
+          {session?.user ? (
+            <form
+              className={"flex justify-between gap-4"}
+              action={async () => {
+                "use server";
+                await signOut({ redirectTo: "/" });
+              }}
+            >
+              <Button variant={"default"} type={"submit"}>
+                Sign Out
+              </Button>
+            </form>
+          ) : (
+            <AuthModal />
+          )}
+        </div>
       </nav>
     </div>
   );
