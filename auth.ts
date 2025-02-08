@@ -1,7 +1,3 @@
-import { client } from "@/sanity/lib/client";
-import { AUTHOR_BY_GOOGLE_ID_QUERY } from "@/sanity/lib/queries";
-import { writeClient } from "@/sanity/lib/write-client";
-
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
@@ -18,7 +14,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   secret: process.env.AUTH_SECRET!,
-  callbacks: {
+  /*callbacks: {
     async signIn({
       user: { name, email, image },
       profile: { id, login, bio } = {},
@@ -60,5 +56,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       Object.assign(session, { id: token.id });
       return session;
     },
-  },
+  },*/
 });
