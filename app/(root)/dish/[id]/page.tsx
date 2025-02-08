@@ -5,7 +5,6 @@ import React, { Suspense } from "react";
 
 import LiveViewAmount from "@/components/LiveViewAmount";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { formatDate, getFallbackProfileImageUrl } from "@/lib/utils";
 import { sanityFetch } from "@/sanity/lib/live";
 import { DISH_BY_ID_QUERY } from "@/sanity/lib/queries";
@@ -127,7 +126,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         </Button>
 
         {/*  Real-time views amount button */}
-        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+        <Suspense fallback={<p>Loading...</p>}>
           <LiveViewAmount id={dishId} />
         </Suspense>
       </section>
