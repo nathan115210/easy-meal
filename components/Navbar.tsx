@@ -16,13 +16,14 @@ const Navbar = async () => {
           <Image src={"/logo.svg"} alt={"logo"} width={100} height={30} />
         </Link>
         <div className={"flex items-center gap-5"}>
-          {!session?.user ? (
+          {/*TODO: ADD create action back*/}
+          {/*{!session?.user ? (
             <div className={"flex items-center gap-5"}></div>
           ) : (
             <Link className={"btn"} href={"/create"}>
               Create
             </Link>
-          )}
+          )}*/}
           {session?.user ? (
             <form
               className={"flex justify-between gap-4"}
