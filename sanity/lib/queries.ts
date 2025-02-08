@@ -56,7 +56,46 @@ export const DISH_BY_ID_QUERY = defineQuery(`*[_type == "dish" && _id == $id] {
   steps
 }[0]`);
 
-export const DISH_VIEWS_QUERY = defineQuery(`*[_type == "dish" && _id == $id] {
-  _id,
-  views
-}[0]`);
+export const DISH_VIEWS_QUERY = defineQuery(`
+    *[_type == "dish" && _id == $id][0]{
+        _id, views
+    }
+`);
+
+export const AUTHOR_BY_GOOGLE_ID_QUERY = defineQuery(`
+*[_type == "author" && id == $id][0]{
+    _id,
+    id,
+    name,
+    username,
+    email,
+    image,
+    bio
+}
+`);
+export const DISHES_BY_AUTHOR_QUERY =
+  defineQuery(`*[_type == "dish" && author._ref == $id] | order(_createdAt desc) {
+  _id, 
+  title, 
+  slug,
+  _createdAt,
+  author -> {
+    _id, name, image, bio
+  }, 
+  views,
+  description,
+  category,
+  image,
+}`);
+
+export const AUTHOR_BY_ID_QUERY = defineQuery(`
+*[_type == "author" && _id == $id][0]{
+    _id,
+    id,
+    name,
+    username,
+    email,
+    image,
+    bio
+}
+`);
