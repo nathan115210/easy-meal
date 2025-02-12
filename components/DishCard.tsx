@@ -9,9 +9,28 @@ import {
   formatDate,
   getFallbackProfileImageUrl,
 } from "@/lib/utils";
-import type { Author, Dish } from "@/sanity/types";
 
 import { EyeIcon } from "lucide-react";
+
+export interface Author {
+  _id: string;
+  name: string;
+  image: string;
+  bio?: string;
+  username?: string;
+}
+
+export interface Dish {
+  _id: string;
+  _createdAt: string;
+  author: Author;
+  image: string;
+  views: number;
+  description: string;
+  title: string;
+  category: string;
+  steps: string;
+}
 
 export type DishType = Omit<Dish, "author"> & { author: Author };
 

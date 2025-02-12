@@ -3,12 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 
+import type { Author, Dish } from "@/components/DishCard";
 import LiveViewAmount from "@/components/LiveViewAmount";
 import { Button } from "@/components/ui/button";
 import { formatDate, getFallbackProfileImageUrl } from "@/lib/utils";
-import { sanityFetch } from "@/sanity/lib/live";
-import { DISH_BY_ID_QUERY } from "@/sanity/lib/queries";
-import { Author, Dish } from "@/sanity/types";
 
 import markdownit from "markdown-it";
 
@@ -19,13 +17,26 @@ export const experimental_ppr = true;
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const pageParams = await params;
   const dishId = pageParams.id;
-
-  const data = (
-    await sanityFetch({
-      query: DISH_BY_ID_QUERY,
-      params: { id: dishId },
-    })
-  ).data as Dish;
+  const mockDish: Dish[] = [
+    {
+      _id: "1",
+      _createdAt: new Date().toISOString(),
+      author: {
+        _id: "author1",
+        name: "John Doe",
+        image: "https://placehold.co/60",
+        bio: "A passionate cook",
+        username: "john_doe",
+      },
+      image: "https://placehold.co/600x400",
+      views: 123,
+      description: "A delicious dish made with love.",
+      steps: "A delicious dish made with love.",
+      title: "Mock Dish",
+      category: "Main Course",
+    },
+  ];
+  const data = mockDish.find((dish) => dish._id === dishId);
 
   if (!data) return notFound();
   const { _createdAt, title, category, author, image, description, steps } =

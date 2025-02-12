@@ -2,30 +2,26 @@
   "name": "easy-meal",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Zhao Hongyu",
+    "email": "nathan_115210@hotmail.com",
+    "url": "https://zhaohongyu.netlify.app/"
+  },
   "scripts": {
-    "dev": "npm run predev && next dev --turbopack",
-    "build": "npm run prebuild && next build",
+    "dev": "next dev --turbopack",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "predev": "npm run extract-schema && npm run typegen",
-    "prebuild": "npm run extract-schema && npm run typegen",
-    "extract-schema": "npx sanity@latest schema extract --path=./sanity/extract.json",
-    "typegen": "npx sanity@latest typegen generate"
+    "lint": "next lint"
   },
   "overrides": {
     "react": "$react",
     "react-dom": "$react-dom",
     "next": "$next"
   },
-  "engines": {
-    "node": "20.18.2"
-  },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-slot": "^1.1.1",
-    "@sanity/image-url": "^1.1.0",
-    "@sanity/vision": "^3.72.1",
     "@tailwindcss/typography": "^0.5.16",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "class-variance-authority": "^0.7.1",
@@ -35,13 +31,10 @@
     "markdown-it": "^14.1.0",
     "next": "^15.2.0-canary.45",
     "next-auth": "^5.0.0-beta.25",
-    "next-sanity": "^9.8.47",
     "nodemailer": "^6.10.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sanity": "^3.72.1",
-    "sanity-plugin-markdown": "^5.0.0",
     "server-only": "^0.0.1",
     "styled-components": "^6.1.14",
     "tailwind-merge": "^3.0.1",

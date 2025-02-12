@@ -1,8 +1,25 @@
 import { DishCard, DishType } from "@/components/DishCard";
 import SearchBar from "@/components/SearchBar";
-import SearchFormReset from "@/components/SearchFormReset";
-import { SanityLive, sanityFetch } from "@/sanity/lib/live";
-import { ALL_DISH_QUERY, DISH_QUERY_WITH_SEARCH } from "@/sanity/lib/queries";
+
+const mockDish: DishType[] = [
+  {
+    _id: "1",
+    _createdAt: new Date().toISOString(),
+    author: {
+      _id: "author1",
+      name: "John Doe",
+      image: "https://placehold.co/60",
+      bio: "A passionate cook",
+      username: "john_doe",
+    },
+    image: "https://placehold.co/600x400",
+    views: 123,
+    description: "A delicious dish made with love.",
+    steps: "A delicious dish made with love.",
+    title: "Mock Dish",
+    category: "Main Course",
+  },
+];
 
 export default async function Page({
   searchParams,
@@ -13,22 +30,10 @@ export default async function Page({
   const searchQuery = resolvedSearchParams.query;
   const params = { search: searchQuery || null };
 
-  const { data: searchedData } = await sanityFetch({
-    query: DISH_QUERY_WITH_SEARCH,
-    params,
-  });
-  const { data: dishesData } = await sanityFetch({
-    query: ALL_DISH_QUERY,
-  });
-  const searchNoFound = searchedData.length === 0;
-  const data = searchQuery
-    ? !!searchedData.length
-      ? searchedData
-      : dishesData
-    : dishesData;
+  console.log("params", params);
 
   //TODO: throw to the error boundary
-  if (!data) return null;
+  // if (!data) return null;
 
   return (
     <>
@@ -42,7 +47,7 @@ export default async function Page({
         <SearchBar query={searchQuery} />
       </section>
       <section className={"section-container"}>
-        {!searchNoFound ? (
+        {/*{!searchNoFound ? (
           <p className={"text-30-semibold"}>
             {searchQuery ? `Search results for "${searchQuery}"` : "All Dishes"}
           </p>
@@ -56,15 +61,14 @@ export default async function Page({
               />
             </div>
           </>
-        )}
+        )}*/}
         <ul className={"card_grid mt-7"}>
-          {!!data.length &&
-            data.map((dish: DishType) => {
+          {!!mockDish.length &&
+            mockDish.map((dish: DishType) => {
               return <DishCard key={dish._id} dish={dish} />;
             })}
         </ul>
       </section>
-      <SanityLive />
     </>
   );
 }
