@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import React, { Suspense } from "react";
+import React from "react";
 
 import type { Author, Dish } from "@/components/DishCard";
 import LiveViewAmount from "@/components/LiveViewAmount";
@@ -12,7 +12,9 @@ import markdownit from "markdown-it";
 
 const md = markdownit();
 // Enable the Partial Pre-rendering (PPR) feature
+/*
 export const experimental_ppr = true;
+*/
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const pageParams = await params;
@@ -137,9 +139,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         </Button>
 
         {/*  Real-time views amount button */}
-        <Suspense fallback={<p>Loading...</p>}>
-          <LiveViewAmount id={dishId} />
-        </Suspense>
+        <LiveViewAmount id={dishId} />
       </section>
     </>
   );
