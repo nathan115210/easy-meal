@@ -1,4 +1,11 @@
+import { Metadata } from "next";
+
 import Navbar from "@/components/Navbar";
+import { getMetadata } from "@/lib/getMetadata";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadata();
+}
 
 interface LayoutProps {
   children: React.ReactNode;
