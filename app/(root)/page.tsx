@@ -1,5 +1,5 @@
-import { DishCard, DishType } from "@/components/DishCard";
-import SearchBar from "@/components/SearchBar";
+/*import { DishCard, DishType } from "@/components/DishCard";*/
+/*import SearchBar from "@/components/SearchBar";
 
 const mockDish: DishType[] = [
   {
@@ -19,8 +19,7 @@ const mockDish: DishType[] = [
     title: "Mock Dish",
     category: "Main Course",
   },
-];
-
+]*/
 export default async function Page({
   searchParams,
 }: {
@@ -38,16 +37,17 @@ export default async function Page({
   return (
     <>
       <section className={"hero"}>
-        <h1 className={"heading"}>Start enjoy cooking now</h1>
+        {/*<h1 className={"heading"}>Start enjoy cooking now</h1>
         <p className={"sub-heading !max-w-3xl"}>
           Easy Meal is a simple recipe app that helps you to cook your favorite
           meals easily. As well as sharing your own recipes with others and get
           inspired by other&rsquo;s recipe.
-        </p>
-        <SearchBar query={searchQuery} />
+        </p>*/}
+        <h1 className={"heading"}>Currently Cooking Up Something Awesome!</h1>
+        {/*<SearchBar query={searchQuery} />*/}
       </section>
-      <section className={"section-container"}>
-        {/*{!searchNoFound ? (
+      {/*<section className={"section-container"}>*/}
+      {/*{!searchNoFound ? (
           <p className={"text-30-semibold"}>
             {searchQuery ? `Search results for "${searchQuery}"` : "All Dishes"}
           </p>
@@ -62,13 +62,13 @@ export default async function Page({
             </div>
           </>
         )}*/}
-        <ul className={"card_grid mt-7"}>
+      {/*<ul className={"card_grid mt-7"}>
           {!!mockDish.length &&
             mockDish.map((dish: DishType) => {
               return <DishCard key={dish._id} dish={dish} />;
             })}
         </ul>
-      </section>
+      </section>*/}
     </>
   );
 }
