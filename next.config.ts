@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
   experimental: {
     ppr: "incremental",
   },
+  // Add the following configuration to trust localhost
+  env: {
+    AUTH_TRUSTED_HOSTS: "localhost",
+  },
 };
 
 export default nextConfig;
